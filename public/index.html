@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MongoDB Blog App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Experiment 9: Connecting to MongoDB</h1>
+    <p class="intro">
+      This blog app is served from the <code>public</code> folder and now uses MongoDB
+      to create, read, update, and delete posts.
+    </p>
+
+    <div class="card">
+      <h2 id="formHeading">Create a Blog Post</h2>
+      <form id="postForm">
+        <input id="postId" name="postId" type="hidden">
+
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text" placeholder="Enter post title" required>
+
+        <label for="content">Content</label>
+        <textarea id="content" name="content" rows="5" placeholder="Write post content" required></textarea>
+
+        <div class="button-row">
+          <button id="submitBtn" type="submit">Add Post</button>
+          <button id="cancelEditBtn" type="button" class="secondary hidden">Cancel Edit</button>
+        </div>
+      </form>
+      <p id="message"></p>
+    </div>
+
+    <div class="card">
+      <h2>Available Blog Posts</h2>
+      <button id="loadPostsBtn" type="button">Load Posts</button>
+      <div id="posts"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
