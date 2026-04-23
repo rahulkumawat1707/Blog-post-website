@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -8,6 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/blogApp';
 let connectionPromise;
+const publicDirectory = path.join(__dirname, 'public');
 
 const postSchema = new mongoose.Schema(
   {
@@ -29,9 +31,13 @@ const postSchema = new mongoose.Schema(
 
 const Post = mongoose.model('Post', postSchema);
 
-app.use(express.static('public'));
+app.use(express.static(publicDirectory));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicDirectory, 'index.html'));
+});
 
 app.get('/about', (req, res) => {
   res.send('This is the about page of the MongoDB blog assignment.');
